@@ -13,10 +13,17 @@
             <el-button @click="searchBooks">搜索</el-button>
           </template>
         </el-input>
-        <el-select v-model="category" placeholder="分类" clearable style="width: 150px; margin-left: 20px" @change="searchBooks">
+        <el-select v-model="category" placeholder="分类" clearable style="width: 170px; margin-left: 20px" @change="searchBooks">
           <el-option label="计算机" value="计算机" />
           <el-option label="文学" value="文学" />
           <el-option label="科幻" value="科幻" />
+          <el-option label="历史" value="历史" />
+          <el-option label="哲学" value="哲学" />
+          <el-option label="心理" value="心理" />
+          <el-option label="社科" value="社科" />
+          <el-option label="艺术" value="艺术" />
+          <el-option label="自然科学" value="自然科学" />
+          <el-option label="经济" value="经济" />
         </el-select>
       </div>
     </el-card>

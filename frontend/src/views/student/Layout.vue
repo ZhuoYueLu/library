@@ -25,6 +25,10 @@
               <el-icon><Document /></el-icon>
               <span>我的借阅</span>
             </el-menu-item>
+            <el-menu-item index="/student/ai-assistant">
+              <el-icon><MagicStick /></el-icon>
+              <span>AI 助手</span>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main class="main-content">
@@ -38,7 +42,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Search, Document } from '@element-plus/icons-vue'
+import { Search, Document, MagicStick } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const route = useRoute()

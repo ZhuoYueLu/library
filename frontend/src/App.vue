@@ -1,3 +1,7 @@
+<!--
+  根组件 - 路由视图出口
+  所有页面通过 <router-view> 根据 URL 动态渲染
+-->
 <template>
   <div id="app">
     <router-view />

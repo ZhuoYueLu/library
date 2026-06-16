@@ -1,3 +1,23 @@
+/**
+ * Vue Router 路由配置
+ *
+ * 路由结构：
+ * /login                 - 登录/注册页面（公共）
+ * /student/books         - 图书列表
+ * /student/books/:id     - 图书详情
+ * /student/my-borrows    - 我的借阅
+ * /student/ai-assistant  - AI 智能找书
+ * /admin/dashboard       - 数据概览
+ * /admin/books           - 图书管理
+ * /admin/students        - 学生管理
+ * /admin/borrows         - 借阅管理
+ *
+ * 路由守卫：
+ * - 未登录时自动跳转到 /login
+ * - 已登录访问 /login 时自动跳转到对应首页
+ * - 角色权限验证：学生不能访问 /admin/*，管理员不能访问 /student/*
+ */
+
 import {createRouter, createWebHistory} from 'vue-router'
 
 import BookManage from '../views/admin/BookManage.vue'

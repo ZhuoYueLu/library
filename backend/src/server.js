@@ -1,3 +1,19 @@
+/**
+ * 后端服务主入口 - 图书馆管理系统 API 服务器
+ *
+ * 技术栈：Express 4 + Multer + SQLite
+ * 端口：3000
+ *
+ * API 路由概览：
+ * 认证相关  - /api/login, /api/register
+ * 图书相关  - /api/books, /api/books/:id, /api/books/:id/comments
+ * 借阅相关  - /api/borrow, /api/return, /api/students/:id/borrow-records
+ * AI 相关   - /api/ai/search
+ * 管理相关  - /api/admin/*
+ * 上传相关  - /api/upload/cover
+ * 静态文件  - /uploads/*
+ */
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');

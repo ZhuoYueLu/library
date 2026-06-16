@@ -34,7 +34,7 @@ import MyBorrows from '../views/student/MyBorrows.vue'
 
 const routes =
     [
-      {path: '/login', component: Login}, {
+      {path: '/', redirect: '/login'}, {path: '/login', component: Login}, {
         path: '/student',
         component: StudentLayout,
         redirect: '/student/books',

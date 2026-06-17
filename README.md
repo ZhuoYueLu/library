@@ -104,6 +104,8 @@ library-management/
 
 ## 快速开始
 
+> **克隆后请注意：必须同时启动后端和前端两个服务！**
+
 ### 环境要求
 
 - Node.js >= 18.0.0
@@ -112,29 +114,24 @@ library-management/
 ### 安装与运行
 
 ```bash
-# 1. 进入项目目录
-cd library-management
+# 1. 克隆项目
+git clone https://github.com/ZhuoYueLu/library.git
+cd library
 
-# 2. 安装后端依赖并启动
+# 2. 安装后端依赖并启动（终端 1）
 cd backend
 npm install
 node src/server.js
-# 后端运行在 http://localhost:3000
+# ✅ 后端运行在 http://localhost:3000
 
-# 3. 新开终端，安装前端依赖并启动
-cd ../frontend
+# 3. 新开一个终端，安装前端依赖并启动（终端 2）
+cd frontend
 npm install
 npm run dev
-# 前端运行在 http://localhost:5173
+# ✅ 前端运行在 http://localhost:5173
 ```
 
-### 一键启动（推荐）
-
-```bash
-# 项目根目录下执行
-cd backend && node src/server.js &
-cd frontend && npm run dev
-```
+> ⚠️ **重要提示**：前端已配置 Vite 代理，访问 `/api/*` 会自动转发到后端。登录时请确保两个终端都在运行！
 
 ---
 

@@ -81,7 +81,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { ArrowLeft } from '@element-plus/icons-vue'
-import axios from 'axios'
+import api from '../../api'
 
 const route = useRoute()
 const router = useRouter()
@@ -96,7 +96,7 @@ const commentForm = ref({
 
 const fetchBook = async () => {
   try {
-    const res = await axios.get(`http://localhost:3000/api/books/${route.params.id}`)
+    const res = await api.get(`/api/books/${route.params.id}`)
     book.value = res.data
   } catch (error) {
     ElMessage.error('获取图书信息失败')
@@ -105,7 +105,7 @@ const fetchBook = async () => {
 
 const fetchComments = async () => {
   try {
-    const res = await axios.get(`http://localhost:3000/api/books/${route.params.id}/comments`)
+    const res = await api.get(`/api/books/${route.params.id}/comments`)
     comments.value = res.data
   } catch (error) {
     console.error('获取评论失败', error)
@@ -114,7 +114,7 @@ const fetchComments = async () => {
 
 const handleBorrow = async () => {
   try {
-    await axios.post('http://localhost:3000/api/borrow', {
+    await api.post('/api/borrow', {
       studentId: user.value.id,
       bookId: book.value.id
     })
@@ -131,7 +131,7 @@ const submitComment = async () => {
     return
   }
   try {
-    await axios.post(`http://localhost:3000/api/books/${route.params.id}/comments`, {
+    await api.post(`/api/books/${route.params.id}/comments`, {
       studentId: user.value.id,
       content: commentForm.value.content,
       rating: commentForm.value.rating

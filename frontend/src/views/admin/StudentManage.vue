@@ -42,7 +42,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import axios from 'axios'
+import api from '../../api'
 
 const students = ref([])
 const dialogVisible = ref(false)
@@ -55,7 +55,7 @@ const form = ref({
 
 const fetchStudents = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/admin/students')
+    const res = await api.get('/api/admin/students')
     students.value = res.data
   } catch (error) {
     console.error('获取学生列表失败', error)
@@ -69,7 +69,7 @@ const openDialog = () => {
 
 const handleSubmit = async () => {
   try {
-    await axios.post('http://localhost:3000/api/admin/students', form.value)
+    await api.post('/api/admin/students', form.value)
     ElMessage.success('添加成功')
     dialogVisible.value = false
     fetchStudents()

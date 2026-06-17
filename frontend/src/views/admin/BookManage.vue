@@ -94,7 +94,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import axios from 'axios'
+import api from '../../api'
 
 const books = ref([])
 const dialogVisible = ref(false)
@@ -114,7 +114,7 @@ const form = ref({
 
 const fetchBooks = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/admin/books')
+    const res = await api.get('/api/admin/books')
     books.value = res.data
   } catch (error) {
     console.error('获取图书列表失败', error)
@@ -141,7 +141,7 @@ const handleFileSelect = async (e) => {
   try {
     const formData = new FormData()
     formData.append('cover', file)
-    const res = await axios.post('http://localhost:3000/api/upload/cover', formData, {
+    const res = await api.post('/api/upload/cover', formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     form.value.coverUrl = res.data.url
@@ -177,10 +177,10 @@ const openDialog = (book = null) => {
 const handleSubmit = async () => {
   try {
     if (isEdit.value) {
-      await axios.put(`http://localhost:3000/api/admin/books/${form.value.id}`, form.value)
+      await api.put(`/api/admin/books/${form.value.id}`, form.value)
       ElMessage.success('编辑成功')
     } else {
-      await axios.post('http://localhost:3000/api/admin/books', form.value)
+      await api.post('/api/admin/books', form.value)
       ElMessage.success('添加成功')
     }
     dialogVisible.value = false
@@ -197,7 +197,7 @@ const handleDelete = async (book) => {
       cancelButtonText: '取消',
       type: 'warning'
     })
-    await axios.delete(`http://localhost:3000/api/admin/books/${book.id}`)
+    await api.delete(`/api/admin/books/${book.id}`)
     ElMessage.success('删除成功')
     fetchBooks()
   } catch (error) {

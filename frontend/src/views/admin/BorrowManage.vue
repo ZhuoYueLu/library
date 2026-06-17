@@ -48,13 +48,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import axios from 'axios'
+import api from '../../api'
 
 const borrowRecords = ref([])
 
 const fetchBorrowRecords = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/admin/borrow-records')
+    const res = await api.get('/api/admin/borrow-records')
     borrowRecords.value = res.data
   } catch (error) {
     console.error('获取借阅记录失败', error)
@@ -68,7 +68,7 @@ const handleReturn = async (record) => {
       cancelButtonText: '取消',
       type: 'warning'
     })
-    await axios.post('http://localhost:3000/api/return', {
+    await api.post('/api/return', {
       recordId: record.id
     })
     ElMessage.success('归还成功！')

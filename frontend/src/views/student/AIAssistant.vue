@@ -119,7 +119,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import axios from 'axios'
+import api from '../../api'
 
 const query = ref('')
 const loading = ref(false)
@@ -129,7 +129,7 @@ const showResults = ref(false)
 
 const fetchHotBooks = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/ai/hot')
+    const res = await api.get('/api/ai/hot')
     hotBooks.value = res.data
   } catch (error) {
     console.error('获取热门书籍失败', error)
@@ -146,7 +146,7 @@ const handleSearch = async () => {
   loading.value = true
 
   try {
-    const res = await axios.post('http://localhost:3000/api/ai/search', { query: userQuery })
+    const res = await api.post('/api/ai/search', { query: userQuery })
     const { matches, total, suggestion } = res.data
     
     if (total === 0) {

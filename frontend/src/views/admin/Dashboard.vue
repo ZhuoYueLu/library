@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../../api'
 
 const stats = ref({
   totalBooks: 0,
@@ -41,7 +41,7 @@ const stats = ref({
 
 const fetchStats = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/admin/stats')
+    const res = await api.get('/api/admin/stats')
     stats.value = res.data
   } catch (error) {
     console.error('获取统计数据失败', error)

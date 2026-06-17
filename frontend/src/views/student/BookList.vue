@@ -49,7 +49,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../../api'
 
 const keyword = ref('')
 const category = ref('')
@@ -57,7 +57,7 @@ const books = ref([])
 
 const searchBooks = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/books', {
+    const res = await api.get('/api/books', {
       params: {
         keyword: keyword.value,
         category: category.value

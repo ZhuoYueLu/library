@@ -103,7 +103,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import axios from 'axios'
+import api from '../api'
 
 const router = useRouter()
 const activeTab = ref('login')
@@ -152,7 +152,7 @@ const validateLoginPassword = (value) => {
 
 const handleLogin = async () => {
   try {
-    const res = await axios.post('http://localhost:3000/api/login', loginForm.value)
+    const res = await api.post('/api/login', loginForm.value)
     const { role, user } = res.data
     localStorage.setItem('userInfo', JSON.stringify({ role, user }))
     ElMessage.success('登录成功！')
@@ -172,7 +172,7 @@ const handleRegister = async () => {
     return
   }
   try {
-    await axios.post('http://localhost:3000/api/register', registerForm.value)
+    await api.post('/api/register', registerForm.value)
     ElMessage.success('注册成功！请登录')
     activeTab.value = 'login'
     loginForm.value.account = registerForm.value.studentId
